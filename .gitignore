@@ -2,3 +2,5 @@
 .idea
 # Composer
 /vendor
+# Config
+config.php
