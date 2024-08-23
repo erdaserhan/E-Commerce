@@ -30,5 +30,25 @@ switch ($route) {
         echo twig->render("publicView/public.homepage.view.html.twig", ['articles'=>$articles, 'categories' => $categories]);
         break;
 
+    case 'categorie':
+        // on vérifie si le slug de la catégorie est bien présent
+        if(!isset($_GET['slug'])){
+            header('Location: ./');
+        }
+        exit;
+
+        $category = $categoryManager->selectOneBySlug($_GET['slug']);
+
+        // si la catégorie n'existe pas, on redirige vers la page 404
+        if($category === null){
+            header('Location: ./?route=404');
+            exit;
+        }
+
+        // on charge les articles de la catégorie
+        $articles = $articleManager->selectAllArticleByCategorySlug($_GET['slug']);
+
+        echo $twig->render("publicView/public.category.view.html.twig",['articles' => $articles, 'category' => $category, 'categories'=>$categories]);
+        break;
 
 }
