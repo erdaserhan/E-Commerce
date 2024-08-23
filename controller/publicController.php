@@ -58,6 +58,14 @@ switch ($route) {
             exit;
         }
 
+        // on charge l'article
+        $article = $articleManager->selectOneBySlug($_GET['slug']);
+        // si l'article n'existe pas, on redirige vers la page 404
+        if($article === null){
+            header('Location: ./?route=404');
+            exit;
+        }
+
 
 
 
