@@ -8,7 +8,7 @@ use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 
 // on va utiliser notre connexion personnalisée (singleton)
-use model\OurPDO;
+use model\MyPDO;
 
 // Appel de la config
 require_once "../config.php";
@@ -34,4 +34,17 @@ $twig = new Environment($loader, [
 
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-$db = MyPDO::getInstance();
+$db = MyPDO::getInstance( DB_TYPE.":
+                host=".   DB_HOST.";
+                dbname=". DB_NAME.";
+                port=".   DB_PORT.";
+                charset=".DB_CHARSET,
+                          DB_LOGIN,
+                          DB_PWD);
+
+$db->setAttribute(MyPDO::ATTR_ERRMODE, MyPDO::ERRMODE_EXCEPTION);
+
+require_once PROJECT_DIRECTORY.'/controller/routerController.php';
+
+// fermeture de la connexion
+$db = null;
