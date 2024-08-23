@@ -20,3 +20,15 @@ $route = $_GET['route'] ?? 'accueil';
 
 // on charge les catégories pour le menu sur toutes les pages
 $categories = $categoryManager->selectAll();
+
+// on va charger les modèles et les vues en fonction de la route
+switch ($route) {
+
+    case 'accueil':
+        $articles = $articleManager->selectAllArticleHomepage();
+
+        echo twig->render("publicView/public.homepage.view.html.twig", ['articles'=>$articles, 'categories' => $categories]);
+        break;
+
+
+}
