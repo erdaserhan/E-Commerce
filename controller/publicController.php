@@ -51,4 +51,14 @@ switch ($route) {
         echo $twig->render("publicView/public.category.view.html.twig",['articles' => $articles, 'category' => $category, 'categories'=>$categories]);
         break;
 
+    case 'article':
+        // on vérifie si le slug de l'article est bien présent
+        if(!isset($_GET['slug'])){
+            header('Location: ./');
+            exit;
+        }
+
+
+
+
 }
