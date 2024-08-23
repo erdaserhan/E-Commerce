@@ -83,11 +83,11 @@ switch ($route) {
             break;
 
         case '404':
-            // vue de la base NON TWIG
+            
             echo $twig->render("publicView/public.404.html.twig");
             break;
 
-
-
-
+        default:
+            include PROJECT_DIRECTORY."/controller/publicController.php";
+        break;
 }
