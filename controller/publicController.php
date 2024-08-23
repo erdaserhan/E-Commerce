@@ -90,4 +90,5 @@ switch ($route) {
         default:
             include PROJECT_DIRECTORY."/controller/publicController.php";
         break;
+        
 }
