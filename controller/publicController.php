@@ -72,6 +72,21 @@ switch ($route) {
         echo $twig->render("publicView/public.article.view.html.twig",['comments' =>$comments, 'article'=>$article, 'categories'=>$categories]);
         break;
 
+        case 'tag':
+            // on vérifie si le slug du tag est bien présent
+            if(!isset($_GET['slug'])){
+                header('Location: ./');
+                exit;
+            }
+    
+            echo "<h1>On affiche une nouvelle vue avec les articles qui ont ce tag</h1>";
+            break;
+
+        case '404':
+            // vue de la base NON TWIG
+            echo $twig->render("publicView/public.404.html.twig");
+            break;
+
 
 
 
