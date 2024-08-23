@@ -66,6 +66,12 @@ switch ($route) {
             exit;
         }
 
+        // on charge les commentaires de l'article
+        $comments = $commentManager->selectAllByIDArticle($article->getArticleId());
+       
+        echo $twig->render("publicView/public.article.view.html.twig",['comments' =>$comments, 'article'=>$article, 'categories'=>$categories]);
+        break;
+
 
 
 
