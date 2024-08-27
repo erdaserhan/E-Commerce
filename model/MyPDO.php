@@ -23,11 +23,11 @@ use PDO;
 use Exception;
 use PDOStatement;
 
-class OurPDO extends PDO
+class MyPDO extends PDO
 {
 
     // Instance unique de PDO pour le singleton
-    private static ?OurPDO $instance = null;
+    private static ?MyPDO $instance = null;
 
     // Constructeur privé pour empêcher l'instanciation sans passer par la méthode getInstance
     private function __construct($dsn, $username = null, $password = null, $options = null)
@@ -38,12 +38,12 @@ class OurPDO extends PDO
 
     // Méthode static publique pour obtenir l'instance unique de PDO
     // sera utilisée comme ça : $pdo = OurPDO::getInstance($dsn, $username, $password, $options);
-    public static function getInstance($dsn, $username = null, $password = null, $options = null): OurPDO
+    public static function getInstance($dsn, $username = null, $password = null, $options = null): MyPDO
     {
         if (self::$instance === null) {
             try {
                 // Création de l'instance de PDO en utilisant le constructeur privé
-                self::$instance = new OurPDO($dsn, $username, $password, $options);
+                self::$instance = new MyPDO($dsn, $username, $password, $options);
             } catch (Exception $e) {
                 die("Erreur de connexion : " . $e->getMessage());
             }
